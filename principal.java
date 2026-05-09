@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class principal{
 static Scanner leer = new Scanner(System.in);
+    static int opCrud;
     public static void main(String[] args){
         int op;
         
@@ -15,7 +16,8 @@ static Scanner leer = new Scanner(System.in);
                 pausa();
                 break;
             case 2:
-                System.out.println("---- Gestion de vehiculos ----");
+                //System.out.println("---- Gestion de vehiculos ----");
+                gestion_de_veiculos();
                 pausa();
                 break;
                 case 3:
@@ -30,6 +32,14 @@ static Scanner leer = new Scanner(System.in);
     } while(op >=1 && op < 5);
     System.out.println("Gracias por usar el software");
 }
+//gention de veiculos
+    public static void gestion_de_veiculos(){
+        do{
+            menu_crud("Gestion de Veiculos ----");
+            opCrud = leer.nextInt();
+        }while(opCrud != 5);
+    }
+
     public static void menu_principal() {
         
         System.out.println("1. Gestion de propietarios");
@@ -39,7 +49,8 @@ static Scanner leer = new Scanner(System.in);
         System.out.println("5. Salir");
     }
 
-    public static void menu_crud() {
+    public static void menu_crud(String titulo) {
+        System.out.println("--Menu de " + titulo + "--");
         System.out.println("1. Registrar");
         System.out.println("2. Listar");
         System.out.println("3. Modificar");
