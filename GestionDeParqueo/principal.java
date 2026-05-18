@@ -37,25 +37,168 @@ static Scanner leer = new Scanner(System.in);
 
 //gestion de propietarios
     public static void gestion_de_propietarios(){
+Propietarios [] np = new Propietarios[20];
+int PR = 0;
+        
         do{
             menu_crud("Gestion de propietarios ----");
             opCrud = leer.nextInt();
+            leer.nextLine();
             switch (opCrud) {
             case 1:
                 System.out.println("---- registrar de propietario ----");
+                    
+                    System.out.println("Ingrese el nombre del propietario: ");
+                String nombre = leer.nextLine();
+
+                System.out.println("Ingrese el apellido del propietario: ");
+                String apellido = leer.nextLine();
+
+                System.out.println("Ingrese el numero de telefono del propietario: ");
+                String telefono = leer.nextLine();
+
+                System.out.println("Ingrese la cedula del propietario: ");
+                String cedula = leer.nextLine();
+
+                Propietarios p = new Propietarios();
+
+                
+
+                p.nombre = nombre;
+                p.apellido = apellido;
+                p.telefono = telefono;
+                p.cedula = cedula;
+
+                np[PR]= p;
+
+
+                PR++;
+
+                System.out.println("propietario registrado correctamente. ");
+
+
+
+                    
                 pausa();
                 break;
             case 2:
                 
                 System.out.println("---- Listar propietario ----");
+
+                    if (PR == 0) {
+                    System.out.println("No hay propietarios registrados.");
+                    
+                }else{
+                    for(int i = 0; i<PR; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("PROPIETARIO #"+ (i+1));
+                System.out.println("Nombre: " + np[i].nombre);
+                System.out.println("Apellido: " + np[i].apellido);
+                System.out.println("Telefono: " + np[i].telefono);
+                System.out.println("Cedula: " + np[i].cedula);
+                System.out.println("-----------------------------");
+                    }
+
+                }
+
+                    
                 pausa();
                 break;
             case 3:
                 System.out.println("---- modificar del propietario ----");
+
+                if(PR == 0){
+
+                    System.out.println("No hay propietarios registrados.");
+
+                }else{
+
+                    for(int i = 0; i<PR; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("PROPIETARIO #"+ (i+1));
+                System.out.println("Nombre: " + np[i].nombre);
+                System.out.println("Apellido: " + np[i].apellido);
+                System.out.println("Telefono: " + np[i].telefono);
+                System.out.println("Cedula: " + np[i].cedula);
+                System.out.println("-----------------------------");
+
+
+
+                }
+
+            }
+                    System.out.println("Digite la opcion del posicion del propietario que desea modificar: ");
+                    int cambiar = leer.nextInt();
+                    leer.nextLine();
+
+                    if (cambiar >= 0 && cambiar < PR) {
+
+                System.out.println("Ingrese el nombre del propietario: ");
+                np[cambiar].nombre = leer.nextLine();
+
+                System.out.println("Ingrese el apellido del propietario: ");
+                np[cambiar].apellido = leer.nextLine();
+
+                System.out.println("Ingrese el numero de telefono del propietario: ");
+                np[cambiar].telefono = leer.nextLine();
+
+                System.out.println("Ingrese la cedula del propietario: ");
+                np[cambiar].cedula = leer.nextLine();
+
+                System.out.println("Propietario modificado correctamente.");
+                        
+                    }else{
+
+                        System.out.println("Posicion invalida.");
+                    }
+                    
                 pausa();
                 break;
             case 4:
                 System.out.println("---- eliminar propietario ----");
+
+                    if (PR == 0) {
+                    System.out.println("No hay propietarios registrados.");
+                    
+                }else{
+                    for(int i = 0; i<PR; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("PROPIETARIO #"+ (i+1));
+                System.out.println("Nombre: " + np[i].nombre);
+                System.out.println("Apellido: " + np[i].apellido);
+                System.out.println("Telefono: " + np[i].telefono);
+                System.out.println("Cedula: " + np[i].cedula);
+                System.out.println("-----------------------------");
+                    }
+
+                }
+
+        System.out.print("Digite la posicion del propietario a eliminar: ");
+        int posicion = leer.nextInt();
+
+        if (posicion >= 0 && posicion < PR) {
+
+            // Mover datos para cerrar el espacio
+            for (int i = posicion; i < PR - 1; i++) {
+
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+            }
+
+            PR--;
+
+            System.out.println("Propietario eliminado correctamente");
+
+        } else {
+
+            System.out.println("Posicion invalida");
+        }
+                    
                 pausa();
                 break;
             }        
