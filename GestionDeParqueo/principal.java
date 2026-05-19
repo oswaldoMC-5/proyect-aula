@@ -232,25 +232,141 @@ int PR = 0;
     }
 //control
     public static void gestion_de_control(){
+        Control [] nc = new Control[20];
+    int CR = 0;
+
         do{
             menu_crud("Gestion de control ----");
             opCrud = leer.nextInt();
+            leer.nextLine();
             switch (opCrud) {
             case 1:
-                System.out.println("---- registrar de entrada ----");
+
+                System.out.println("---- registrar entrada ----");
+
+                System.out.println("Ingrese el vehiculo: ");
+                String vehiculo = leer.nextLine();
+
+                System.out.println("Ingrese la fecha: ");
+                String fecha = leer.nextLine();
+
+                System.out.println("Ingrese la hora de entrada: ");
+                String horaEntrada = leer.nextLine();
+
+                System.out.println("Ingrese la hora de salida: ");
+                String horaSalida = leer.nextLine();
+
+                System.out.println("Ingrese el estado: ");
+                String estado = leer.nextLine();
+
+                Control c = new Control();
+
+                c.vehiculo = vehiculo;
+                c.fecha = fecha;
+                c.horaEntrada = horaEntrada;
+                c.estado = estado;
+                c.horaSalida = horaSalida;
+
+                nc[CR] = c;
+                CR++;
+
+                System.out.println("Entrada registrada correctamente");
+                
                 pausa();
                 break;
             case 2:
                 
                 System.out.println("---- Listar entrada ----");
+                    if (CR == 0) {
+                        System.out.println("No hay controles registrados.");
+                    }else{
+                        for(int i = 0; i<CR; i++){
+                            System.out.println("-----------------------------");
+                            System.out.println("CONTROL #"+ (i+1));
+                            System.out.println("Vehiculo: " + nc[i].vehiculo);
+                            System.out.println("Fecha: " + nc[i].fecha);
+                            System.out.println("Hora de entrada: " + nc[i].horaEntrada);
+                            System.out.println("Hora de salida: " + nc[i].horaSalida);
+                            System.out.println("Estado: " + nc[i].estado);
+                            System.out.println("-----------------------------");
+                        }
+                }
+
                 pausa();
                 break;
             case 3:
+
                 System.out.println("---- modificar el estado ----");
+
+                if(CR == 0){
+
+                    System.out.println("No hay registros");
+
+                }else{
+
+                    for(int i = 0; i < CR; i++){
+
+                        System.out.println((i+1) + ". " + nc[i].vehiculo);
+                    }
+
+                    System.out.println("Digite la posicion: ");
+                    int cambiar = leer.nextInt();
+                    leer.nextLine();
+
+                    cambiar--;
+
+                    if(cambiar >= 0 && cambiar < CR){
+
+                        System.out.println("Nuevo estado: ");
+
+                        nc[cambiar].estado = leer.nextLine();
+
+                        System.out.println("Estado actualizado");
+
+                    }else{
+
+                        System.out.println("Posicion invalida");
+                    }
+                }
+
                 pausa();
                 break;
             case 4:
+
                 System.out.println("---- salida ----");
+
+                                if(CR == 0){
+
+                    System.out.println("No hay registros");
+
+                }else{
+
+                    for(int i = 0; i < CR; i++){
+
+                        System.out.println((i+1) + ". " + nc[i].vehiculo);
+                    }
+
+                    System.out.println("Digite la posicion: ");
+                    int salida = leer.nextInt();
+                    leer.nextLine();
+
+                    salida--;
+
+                    if(salida >= 0 && salida < CR){
+
+                        System.out.println("Ingrese hora de salida: ");
+                        nc[salida].horaSalida = leer.nextLine();
+
+                        nc[salida].estado = "FINALIZADO";
+
+                        System.out.println("Salida registrada correctamente");
+
+                    }else{
+
+                        System.out.println("Posicion invalida");
+                    }
+                }
+
                 pausa();
                 break;
             }        
@@ -317,4 +433,4 @@ int PR = 0;
         System.out.println("\t\nPresione enter para continuar...");
         leer.nextLine();
     }
-}
+} 
