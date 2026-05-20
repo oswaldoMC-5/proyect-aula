@@ -2,6 +2,23 @@ import java.util.Scanner;
 public class principal{
 static Scanner leer = new Scanner(System.in);
     static int opCrud;
+
+    // ===== PROPIETARIOS =====
+static Propietarios[] np = new Propietarios[20];
+static int PR = 0;
+
+// ===== VEHICULOS =====
+static Vehiculo[] nv = new Vehiculo[20];
+static int VH = 0;
+
+// ===== CONTROL =====
+static Control[] nc = new Control[20];
+static int CR = 0;
+
+// ===== PAGOS =====
+static Pago[] pg = new Pago[20];
+static int PG = 0;
+
     public static void main(String[] args){
         int op;
         do{
@@ -37,8 +54,7 @@ static Scanner leer = new Scanner(System.in);
 
 //gestion de propietarios
     public static void gestion_de_propietarios(){
-Propietarios [] np = new Propietarios[20];
-int PR = 0;
+
         
         do{
             menu_crud("Gestion de propietarios ----");
@@ -133,6 +149,8 @@ int PR = 0;
                     int cambiar = leer.nextInt();
                     leer.nextLine();
 
+                    cambiar--;
+
                     if (cambiar >= 0 && cambiar < PR) {
 
                 System.out.println("Ingrese el nombre del propietario: ");
@@ -179,6 +197,8 @@ int PR = 0;
         System.out.print("Digite la posicion del propietario a eliminar: ");
         int posicion = leer.nextInt();
 
+        posicion--;
+
         if (posicion >= 0 && posicion < PR) {
 
             // Mover datos para cerrar el espacio
@@ -206,8 +226,7 @@ int PR = 0;
     }
 //gestion de vehiculos
     public static void gestion_de_vehiculos(){
-Vehiculo [] np = new Vehiculo[20];
-int VH = 0; 
+ 
         do{
             menu_crud("Gestion de Vehiculos ----");
             opCrud = leer.nextInt();
@@ -231,7 +250,7 @@ int VH = 0;
                 v.Modelo = Modelos;
                 v.Marca = Marca;
 
-                np[VH]= v;
+                nv[VH]= v;
 
 
                 VH++;
@@ -252,9 +271,9 @@ int VH = 0;
                         
                 System.out.println("-----------------------------");       
                 System.out.println("Vehiculo #"+ (i+1));
-                System.out.println("Placa: " + np[i].Placa);
-                System.out.println("Modelo: " + np[i].Modelo);
-                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("Placa: " + nv[i].Placa);
+                System.out.println("Modelo: " + nv[i].Modelo);
+                System.out.println("Marca: " + nv[i].Marca);
                 System.out.println("-----------------------------");
                     }
 
@@ -276,9 +295,9 @@ int VH = 0;
                         
                 System.out.println("-----------------------------");       
                 System.out.println("Vehiculo #"+ (i+1));
-                System.out.println("Placa: " + np[i].Placa);
-                System.out.println("Modelo: " + np[i].Modelo);
-                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("Placa: " + nv[i].Placa);
+                System.out.println("Modelo: " + nv[i].Modelo);
+                System.out.println("Marca: " + nv[i].Marca);
                 System.out.println("-----------------------------");
 
                 }
@@ -288,16 +307,18 @@ int VH = 0;
                     int cambiar = leer.nextInt();
                     leer.nextLine();
 
+                    cambiar--;
+
                     if (cambiar >= 0 && cambiar < VH) {
 
                 System.out.println("Ingrese el nombre del propietario: ");
-                np[cambiar].Placa = leer.nextLine();
+                nv[cambiar].Placa = leer.nextLine();
 
                 System.out.println("Ingrese el apellido del propietario: ");
-                np[cambiar].Modelo = leer.nextLine();
+                nv[cambiar].Modelo = leer.nextLine();
 
                 System.out.println("Ingrese el numero de telefono del propietario: ");
-                np[cambiar].Marca = leer.nextLine();
+                nv[cambiar].Marca = leer.nextLine();
 
                 System.out.println("Vehiculo modificado correctamente.");
                         
@@ -319,9 +340,9 @@ int VH = 0;
                         
                 System.out.println("-----------------------------");       
                 System.out.println("Vehiculo #"+ (i+1));
-                System.out.println("Placa: " + np[i].Placa);
-                System.out.println("Modelo: " + np[i].Modelo);
-                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("Placa: " + nv[i].Placa);
+                System.out.println("Modelo: " + nv[i].Modelo);
+                System.out.println("Marca: " + nv[i].Marca);
                 System.out.println("-----------------------------");
                     }
 
@@ -330,20 +351,22 @@ int VH = 0;
         System.out.print("Digite la posicion del Vehiculo a eliminar: ");
         int posicion = leer.nextInt();
 
+        posicion--;
+
         if (posicion >= 0 && posicion < VH) {
 
             // Mover datos para cerrar el espacio
             for (int i = posicion; i < VH - 1; i++) {
 
-                np[i] = np[i + 1];
-                np[i] = np[i + 1];
-                np[i] = np[i + 1];
-                np[i] = np[i + 1];
+                nv[i] = nv[i + 1];
+                nv[i] = nv[i + 1];
+                nv[i] = nv[i + 1];
+                nv[i] = nv[i + 1];
             }
 
             VH--;
 
-            System.out.println("Propietario eliminado correctamente");
+            System.out.println("vehiculo eliminado correctamente");
 
         } else {
 
@@ -355,10 +378,9 @@ int VH = 0;
             }        
         }while(opCrud != 5);
     }
-//control
+//gestion de control
     public static void gestion_de_control(){
-        Control [] nc = new Control[20];
-    int CR = 0;
+
 
         do{
             menu_crud("Gestion de control ----");
@@ -456,35 +478,159 @@ int VH = 0;
 
                 pausa();
                 break;
-            case 4:
+case 4:
 
-                System.out.println("---- salida ----");
+    System.out.println("---- salida ----");
 
-                                if(CR == 0){
+    if(CR == 0){
 
-                    System.out.println("No hay registros");
+        System.out.println("No hay registros");
+
+    }else{
+
+        for(int i = 0; i < CR; i++){
+
+            System.out.println((i+1) + ". " + nc[i].vehiculo);
+        }
+
+        System.out.println("Digite la posicion: ");
+        int salida = leer.nextInt();
+        leer.nextLine();
+
+        salida--;
+
+        if(salida >= 0 && salida < CR){
+
+            System.out.println("Ingrese hora de salida: ");
+            nc[salida].horaSalida = leer.nextLine();
+
+            nc[salida].estado = "FINALIZADO";
+
+            System.out.println("Salida registrada correctamente");
+
+            // ELIMINAR EL REGISTRO DEL CONTROL
+            for(int i = salida; i < CR - 1; i++){
+
+                nc[i] = nc[i + 1];
+            }
+
+            CR--;
+
+            System.out.println("Registro eliminado correctamente");
+
+        }else{
+
+            System.out.println("Posicion invalida");
+        }
+    }
+
+    pausa();
+    break;
+            }        
+        }while(opCrud != 5);
+    }
+ // gestion de pago
+public static void gestion_de_pago(){
+
+    do{
+
+        menu_crud("Gestion de pago ----");
+
+        opCrud = leer.nextInt();
+        leer.nextLine();
+
+        switch(opCrud){
+
+           
+            case 1:
+
+                System.out.println("---- registrar pago ----");
+
+                System.out.println("Ingrese el vehiculo:");
+                String vehiculo = leer.nextLine();
+
+                System.out.println("Ingrese la tarifa por hora:");
+                double tarifa = leer.nextDouble();
+
+                System.out.println("Ingrese las horas:");
+                int horas = leer.nextInt();
+
+                double total = tarifa * horas;
+
+                Pago p = new Pago();
+
+                p.vehiculo = vehiculo;
+                p.tarifa = tarifa;
+                p.total = total;
+
+                pg[PG] = p;
+
+                PG++;
+
+                System.out.println("Pago registrado correctamente");
+                System.out.println("Total a pagar: " + total);
+
+                pausa();
+                break;
+
+            
+            case 2:
+
+                System.out.println("---- listar pagos ----");
+
+                if(PG == 0){
+
+                    System.out.println("No hay pagos registrados");
 
                 }else{
 
-                    for(int i = 0; i < CR; i++){
+                    for(int i = 0; i < PG; i++){
 
-                        System.out.println((i+1) + ". " + nc[i].vehiculo);
+                        System.out.println("----------------------");
+                        System.out.println("PAGO #" + (i+1));
+                        System.out.println("Vehiculo: " + pg[i].vehiculo);
+                        System.out.println("Tarifa: " + pg[i].tarifa);
+                        System.out.println("Total: " + pg[i].total);
+                        System.out.println("----------------------");
+                    }
+                }
+
+                pausa();
+                break;
+
+            
+            case 3:
+
+                System.out.println("---- modificar pago ----");
+
+                if(PG == 0){
+
+                    System.out.println("No hay pagos registrados");
+
+                }else{
+
+                    for(int i = 0; i < PG; i++){
+
+                        System.out.println((i+1) + ". " + pg[i].vehiculo);
                     }
 
-                    System.out.println("Digite la posicion: ");
-                    int salida = leer.nextInt();
+                    System.out.println("Digite la posicion:");
+                    int cambiar = leer.nextInt();
                     leer.nextLine();
 
-                    salida--;
+                    cambiar--;
 
-                    if(salida >= 0 && salida < CR){
+                    if(cambiar >= 0 && cambiar < PG){
 
-                        System.out.println("Ingrese hora de salida: ");
-                        nc[salida].horaSalida = leer.nextLine();
+                        System.out.println("Nueva tarifa:");
+                        pg[cambiar].tarifa = leer.nextDouble();
 
-                        nc[salida].estado = "FINALIZADO";
+                        System.out.println("Nuevas horas:");
+                        int horasNuevas = leer.nextInt();
 
-                        System.out.println("Salida registrada correctamente");
+                        pg[cambiar].total = pg[cambiar].tarifa * horasNuevas;
+
+                        System.out.println("Pago modificado correctamente");
 
                     }else{
 
@@ -494,35 +640,51 @@ int VH = 0;
 
                 pausa();
                 break;
-            }        
-        }while(opCrud != 5);
-    }
- //pago
-    public static void gestion_de_pago(){
-        do{
-            menu_crud("Gestion de pago ----");
-            opCrud = leer.nextInt();
-            switch (opCrud) {
-            case 1:
-                System.out.println("---- registrar pago ----");
-                pausa();
-                break;
-            case 2:
-                
-                System.out.println("---- Listar pago ----");
-                pausa();
-                break;
-            case 3:
-                System.out.println("---- modificar pago ----");
-                pausa();
-                break;
+
+            
             case 4:
+
                 System.out.println("---- eliminar pago ----");
+
+                if(PG == 0){
+
+                    System.out.println("No hay pagos registrados");
+
+                }else{
+
+                    for(int i = 0; i < PG; i++){
+
+                        System.out.println((i+1) + ". " + pg[i].vehiculo);
+                    }
+
+                    System.out.println("Digite la posicion:");
+                    int eliminar = leer.nextInt();
+
+                    eliminar--;
+
+                    if(eliminar >= 0 && eliminar < PG){
+
+                        for(int i = eliminar; i < PG - 1; i++){
+
+                            pg[i] = pg[i + 1];
+                        }
+
+                        PG--;
+
+                        System.out.println("Pago eliminado correctamente");
+
+                    }else{
+
+                        System.out.println("Posicion invalida");
+                    }
+                }
+
                 pausa();
                 break;
-            }        
-        }while(opCrud != 5);
-    }
+        }
+
+    }while(opCrud != 5);
+}
 
     public static void menu_principal() {
         System.out.println("---- Menu Principal ----");
