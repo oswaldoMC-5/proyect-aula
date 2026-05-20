@@ -206,25 +206,150 @@ int PR = 0;
     }
 //gestion de vehiculos
     public static void gestion_de_vehiculos(){
+Vehiculo [] np = new Vehiculo[20];
+int VH = 0; 
         do{
             menu_crud("Gestion de Vehiculos ----");
             opCrud = leer.nextInt();
+            leer.nextLine();
             switch (opCrud) {
             case 1:
-                System.out.println("---- Registrar vehiculo ----");
+                System.out.println("---- registrar de Vehiculo ----");
+                    
+                    System.out.println("Ingrese el nombre del Placa: ");
+                String Placa = leer.nextLine();
+
+                System.out.println("Ingrese el Modelo: ");
+                String Modelos = leer.nextLine();
+
+                System.out.println("Ingrese la Marca: ");
+                String Marca = leer.nextLine();
+
+                Vehiculo v = new Vehiculo();
+
+                v.Placa = Placa;
+                v.Modelo = Modelos;
+                v.Marca = Marca;
+
+                np[VH]= v;
+
+
+                VH++;
+
+                System.out.println("Vehiculo registrado correctamente. ");
+ 
                 pausa();
                 break;
             case 2:
                 
-                System.out.println("---- Listar vehiculo ----");
+                System.out.println("---- Listar Vehiculos ----");
+
+                    if (VH == 0) {
+                    System.out.println("No hay propietarios registrados.");
+                    
+                }else{
+                    for(int i = 0; i<VH; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("Vehiculo #"+ (i+1));
+                System.out.println("Placa: " + np[i].Placa);
+                System.out.println("Modelo: " + np[i].Modelo);
+                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("-----------------------------");
+                    }
+
+                }
+
+                    
                 pausa();
                 break;
             case 3:
-                System.out.println("---- modificar del vehiculo ----");
+                System.out.println("---- modificar del Vehiculo ----");
+
+                if(VH == 0){
+
+                    System.out.println("No hay propietarios registrados.");
+
+                }else{
+
+                    for(int i = 0; i<VH; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("Vehiculo #"+ (i+1));
+                System.out.println("Placa: " + np[i].Placa);
+                System.out.println("Modelo: " + np[i].Modelo);
+                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("-----------------------------");
+
+                }
+
+            }
+                    System.out.println("Digite la opcion del posicion del Vehiculo que desea modificar: ");
+                    int cambiar = leer.nextInt();
+                    leer.nextLine();
+
+                    if (cambiar >= 0 && cambiar < VH) {
+
+                System.out.println("Ingrese el nombre del propietario: ");
+                np[cambiar].Placa = leer.nextLine();
+
+                System.out.println("Ingrese el apellido del propietario: ");
+                np[cambiar].Modelo = leer.nextLine();
+
+                System.out.println("Ingrese el numero de telefono del propietario: ");
+                np[cambiar].Marca = leer.nextLine();
+
+                System.out.println("Vehiculo modificado correctamente.");
+                        
+                    }else{
+
+                        System.out.println("Posicion invalida.");
+                    }
+                    
                 pausa();
                 break;
             case 4:
-                System.out.println("---- eliminar vehiculo ----");
+                System.out.println("---- eliminar Vehiculo ----");
+
+                    if (VH == 0) {
+                    System.out.println("No hay Vehiculo registrados.");
+                    
+                }else{
+                    for(int i = 0; i<VH; i++){
+                        
+                System.out.println("-----------------------------");       
+                System.out.println("Vehiculo #"+ (i+1));
+                System.out.println("Placa: " + np[i].Placa);
+                System.out.println("Modelo: " + np[i].Modelo);
+                System.out.println("Marca: " + np[i].Marca);
+                System.out.println("-----------------------------");
+                    }
+
+                }
+
+        System.out.print("Digite la posicion del Vehiculo a eliminar: ");
+        int posicion = leer.nextInt();
+
+        if (posicion >= 0 && posicion < VH) {
+
+            // Mover datos para cerrar el espacio
+            for (int i = posicion; i < VH - 1; i++) {
+
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+                np[i] = np[i + 1];
+            }
+
+            VH--;
+
+            System.out.println("Propietario eliminado correctamente");
+
+        } else {
+
+            System.out.println("Posicion invalida");
+        }
+                    
                 pausa();
                 break;
             }        
